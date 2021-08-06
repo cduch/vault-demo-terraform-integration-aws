@@ -14,6 +14,6 @@ echo "vaulttoken = \"$(cat test_token)\"" > tf/terraform.tfvars
 
 # do some tests with that token
 export VAULT_TOKEN=$(cat test_token)
-vault token lookup
+#vault token lookup
 
-vault read  aws/sts/testrole role_arn="${AWS_ROLE_ARN}" ttl=15m
+#vault read  aws/sts/testrole role_arn="${AWS_ROLE_ARN}" ttl=15m

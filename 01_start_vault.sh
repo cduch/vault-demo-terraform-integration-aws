@@ -11,8 +11,12 @@ docker network create dev-network
 
 touch log/vault_audit.log
 
+#  get credentials from AWS and put them into ENV vars
+doormat --refresh
 eval $(doormat aws --account se_demos_dev)
 
+
+# run docker container
 docker run --name vault-demo-vault \
 --network dev-network \
 --privileged \
