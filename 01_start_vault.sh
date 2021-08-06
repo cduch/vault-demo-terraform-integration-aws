@@ -23,9 +23,10 @@ docker run --name vault-demo-vault \
 -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" \
 -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" \
 -e AWS_SESSION_TOKEN="${AWS_SESSION_TOKEN}" \
+-e VAULT_LICENSE="${VAULT_LICENSE}" \
 -p 8200:8200 \
 --mount type=bind,source="$(pwd)"/log,target=/var/log \
-hashicorp/vault-enterprise:1.7.3_ent \
+hashicorp/vault-enterprise:1.8.1_ent \
 server -dev -dev-root-token-id="root" &
 
 export VAULT_ADDR=http://localhost:8200
@@ -35,9 +36,6 @@ export VAULT_NAMESPACE=
 sleep 10 
 # login with root token
 vault login root
-
-#write Vault Enterprise License (assuming it's already in a ENV Variable)
-vault write sys/license text="${VAULT_LICENSE}"
 
 # enable audit logging
 vault audit disable file
